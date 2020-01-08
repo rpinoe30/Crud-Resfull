@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.api.dto.EmployeeDTO;
 import com.api.model.Employee;
 import com.api.model.repository.EmployeeRepository;
 
@@ -19,8 +20,18 @@ public class EmployeeService {
 	 * @param employee
 	 * @return
 	 */
-	public Employee saveEmployee(Employee employee) {
-		return employeeRepository.save(employee);
+	public EmployeeDTO saveEmployee(Employee employee) {
+		EmployeeDTO dto = new EmployeeDTO();
+
+		Employee entityEmployee = employeeRepository.save(employee);
+
+		if (employeeRepository.save(employee) != null) {
+			dto.setFirstName(entityEmployee.getFirstName());
+			dto.setLastName(entityEmployee.getLastName());
+			dto.setJobTitle(entityEmployee.getJobTitle());
+		}
+
+		return dto;
 	}
 
 	/*

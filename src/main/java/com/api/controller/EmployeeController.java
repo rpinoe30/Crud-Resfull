@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.dto.EmployeeDTO;
 import com.api.model.Employee;
 import com.api.service.EmployeeService;
 
@@ -22,7 +23,7 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 
 	@PostMapping("/create")
-	public Employee createEmployee(@Valid @RequestBody Employee emp) {
+	public EmployeeDTO createEmployee(@Valid @RequestBody Employee emp) {
 		return employeeService.saveEmployee(emp);
 	}
 
